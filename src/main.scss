@@ -18,16 +18,25 @@
 
 .buttons {
     display: grid;
-    grid-template-areas: 
-    "C convert % /"
-    "7 8 9 x"
-    "4 5 6 -"
-    "1 2 3 +"
-    "0 0 . =";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 5px;
+    background-color: black;
+    padding: 10px;
 }
 
 .button {
     width: 20vw;
     height: auto;
     font-size: 30px;
+    border-radius: 50px;
+    padding: 10px;
+
+    &__number {
+        &--0 {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            width: 45vw;
+        }
+    }
 }
