@@ -1,9 +1,9 @@
 import './main.scss'
 const display = document.querySelector<HTMLInputElement>(".display")
-const plusSign = document.querySelector<HTMLButtonElement>(".button__operator--plus");
 const equalSign = document.querySelector<HTMLButtonElement>(".button__operator--equal");
 const cancel = document.querySelector<HTMLButtonElement>(".button__function--cancel");
-if(!display || !plusSign || !equalSign|| !cancel) {
+const buttonsOperators = document.querySelectorAll<HTMLElement>(".button__operator");
+if(!display || !equalSign|| !cancel) {
     throw new Error("Issues with Selector")
 }
 let valueFirst: number; 
@@ -30,27 +30,50 @@ const handleButtonsNumber = (event: Event) => {
     }
 };
 buttonsNumber.forEach(button => {
-    button.addEventListener("click", handleButtonsNumber)
+    button.addEventListener("click", handleButtonsNumber);
   });
 
 // idea: all buttons pressed, show up in diplay, perform the calculation
 // operators: store previous number and perform with the next number
 //eg plus: store previous value, if display include +, then + the second value
 
-
-const handlePlus = () => {
-    operator = "+"
-    stage = 2
+const handleButtonsOperators = (event: Event) => {
+    const target = event.currentTarget as HTMLButtonElement;
+    operator = target.innerText;
+    stage = 2;
 };
 
-plusSign.addEventListener("click", handlePlus)
+buttonsOperators.forEach(button => {
+    button.addEventListener("click", handleButtonsOperators);
+});
 
 
 const handleEqual = () => {
     if (operator === "+") {
         const answer = valueFirst + valueSecond;
         display.value = `${answer}`;
-    };
+        stage = 0;
+        numberFirst = [];
+        numberSecond = [];
+    } else if (operator === "-") {
+        const answer = valueFirst - valueSecond;
+        display.value = `${answer}`;
+        stage = 0;
+        numberFirst = [];
+        numberSecond = [];
+    } else if (operator === "x") {
+        const answer = valueFirst * valueSecond;
+        display.value = `${answer}`;
+        stage = 0;
+        numberFirst = [];
+        numberSecond = [];
+    } else if (operator === "÷") {
+        const answer = valueFirst / valueSecond;
+        display.value = `${answer}`;
+        stage = 0;
+        numberFirst = [];
+        numberSecond = [];
+    }
 };
 
 equalSign.addEventListener("click", handleEqual)
