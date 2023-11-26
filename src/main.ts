@@ -77,9 +77,13 @@ const handleEqual = () => {
 };
 
 equalSign.addEventListener("click", handleEqual)
-// const handleCancel = () => {
-//     display.innerText = "0"
-// }
-// cancel.addEventListener("click", handleCancel);
+
+const handleCancel = () => {
+    display.value = "";
+    stage = 0;
+    numberFirst = [];
+    numberSecond = [];
+}
+cancel.addEventListener("click", handleCancel);
 
 // = : perform calculation and show the answer in the display
