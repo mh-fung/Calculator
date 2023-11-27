@@ -97,7 +97,7 @@ const handleEqual = () => {
             display.value =`${answer}`
         }
         valueFirst = answer;
-    }
+    };
     stage = 0;
     numberFirst = [];
     numberSecond = [];
@@ -160,8 +160,8 @@ percentage.addEventListener("click", handlePercentage);
 
 //Extended - function for sin
 const handleSin = () => {
-    valueFirst = Math.sin(valueFirst);
-    display.value = `${valueFirst}`;
+    valueFirst = Math.sin(valueFirst* Math.PI /180);
+    display.value = `${valueFirst.toFixed(6)}`;
     stage = 0;
     numberFirst = [];
 };
@@ -169,8 +169,8 @@ const handleSin = () => {
 sin.addEventListener("click", handleSin);
 //Extended - function for cos
 const handleCos = () => {
-    valueFirst = Math.cos(valueFirst);
-    display.value = `${valueFirst}`;
+    valueFirst = Math.cos(valueFirst* Math.PI /180);
+    display.value = `${valueFirst.toFixed(6)}`;
     stage = 0;
     numberFirst = [];
 };
@@ -179,8 +179,8 @@ const handleCos = () => {
 cos.addEventListener("click", handleCos);
 //Extended - function for tan
 const handleTan = () => {
-    valueFirst = Math.tan(valueFirst);
-    display.value = `${valueFirst}`;
+    valueFirst = Math.tan(valueFirst* Math.PI /180);
+    display.value = `${valueFirst.toFixed(6)}`;
     stage = 0;
     numberFirst = [];
 };
