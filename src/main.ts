@@ -7,10 +7,13 @@ const posNeg = document.querySelector<HTMLButtonElement>(".button__function--pos
 const decimal = document.querySelector<HTMLButtonElement>(".button__function--dot");
 const percentage = document.querySelector<HTMLButtonElement>(".button__function--percentage");
 const sin = document.querySelector<HTMLButtonElement>(".button__functionExtended--sin");
+const cos = document.querySelector<HTMLButtonElement>(".button__functionExtended--cos");
+const tan = document.querySelector<HTMLButtonElement>(".button__functionExtended--tan");
+const log = document.querySelector<HTMLButtonElement>(".button__functionExtended--log");
 const buttonsNumber = document.querySelectorAll<HTMLElement>(".button__number");
 const buttonsOperators = document.querySelectorAll<HTMLElement>(".button__operator");
 
-if(!display || !equal || !cancel || !posNeg || !decimal || !percentage || !sin) {
+if(!display || !equal || !cancel || !posNeg || !decimal || !percentage || !sin || !cos || !tan || !log) {
     throw new Error("Issues with Selector");
 };
 
@@ -161,14 +164,34 @@ const handleSin = () => {
     display.value = `${valueFirst}`;
     stage = 0;
     numberFirst = [];
-}
+};
 //Add eventlistener for the sin button in html
-sin.addEventListener("click", handleSin)
+sin.addEventListener("click", handleSin);
 //Extended - function for cos
+const handleCos = () => {
+    valueFirst = Math.cos(valueFirst);
+    display.value = `${valueFirst}`;
+    stage = 0;
+    numberFirst = [];
+};
+
 //Add eventlistener for the cos button in html
-
+cos.addEventListener("click", handleCos);
 //Extended - function for tan
+const handleTan = () => {
+    valueFirst = Math.tan(valueFirst);
+    display.value = `${valueFirst}`;
+    stage = 0;
+    numberFirst = [];
+};
 //Add eventlistener for the tan button in html
-
+tan.addEventListener("click", handleTan);
 //Extended - function for log
+const handleLog = () => {
+    valueFirst = Math.log(valueFirst);
+    display.value = `${valueFirst}`;
+    stage = 0;
+    numberFirst = [];
+};
 //Add eventlistener for the log button in html
+log.addEventListener("click", handleLog);
