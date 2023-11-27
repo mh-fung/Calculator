@@ -6,10 +6,11 @@ const cancel = document.querySelector<HTMLButtonElement>(".button__function--can
 const posNeg = document.querySelector<HTMLButtonElement>(".button__function--posNeg");
 const decimal = document.querySelector<HTMLButtonElement>(".button__function--dot");
 const percentage = document.querySelector<HTMLButtonElement>(".button__function--percentage");
+const sin = document.querySelector<HTMLButtonElement>(".button__functionExtended--sin");
 const buttonsNumber = document.querySelectorAll<HTMLElement>(".button__number");
 const buttonsOperators = document.querySelectorAll<HTMLElement>(".button__operator");
 
-if(!display || !equal || !cancel || !posNeg || !decimal || !percentage) {
+if(!display || !equal || !cancel || !posNeg || !decimal || !percentage || !sin) {
     throw new Error("Issues with Selector");
 };
 
@@ -154,13 +155,15 @@ const handlePercentage = () => {
 //Add eventlistener for the percentage button in html
 percentage.addEventListener("click", handlePercentage);
 
-//Extended - function for power
-
-//Add eventlistener for the power button in html
-
 //Extended - function for sin
+const handleSin = () => {
+    valueFirst = Math.sin(valueFirst);
+    display.value = `${valueFirst}`;
+    stage = 0;
+    numberFirst = [];
+}
 //Add eventlistener for the sin button in html
-
+sin.addEventListener("click", handleSin)
 //Extended - function for cos
 //Add eventlistener for the cos button in html
 
