@@ -6,7 +6,8 @@ const cancel = document.querySelector<HTMLButtonElement>(".button__function--can
 const posNeg = document.querySelector<HTMLButtonElement>(".button__function--posNeg");
 const buttonsNumber = document.querySelectorAll<HTMLElement>(".button__number");
 const buttonsOperators = document.querySelectorAll<HTMLElement>(".button__operator");
-if(!display || !equalSign|| !cancel || !posNeg) {
+const decimal = document.querySelector<HTMLButtonElement>(".button__function--dot")
+if(!display || !equalSign|| !cancel || !posNeg || !decimal) {
     throw new Error("Issues with Selector");
 };
 
@@ -15,10 +16,10 @@ let valueFirst: number;
 let valueSecond: number;
 let stage:number = 0;
 let operator: string;
-let numberFirst: number[] = [];
-let numberSecond: number[] = [];
+let numberFirst: any [] = [];
+let numberSecond: any[] = [];
 
-//function for numbers
+//Function for numbers
 const handleButtonsNumber = (event: Event) => {
     const target = event.currentTarget as HTMLButtonElement;
     const buttonValue = target.innerText;
@@ -31,65 +32,60 @@ const handleButtonsNumber = (event: Event) => {
         numberFirst.push(Number(buttonValue));
         display.value = `${numberSecond.join("")}`;
         valueSecond = Number(display.value);
-    }
+    };
 };
-//add eventlistener for the buttons in html
+//Add eventlistener for the buttons in html
 buttonsNumber.forEach(button => {
     button.addEventListener("click", handleButtonsNumber);
   });
-//function for operators
+//Function for operators
 const handleButtonsOperators = (event: Event) => {
     const target = event.currentTarget as HTMLButtonElement;
     operator = target.innerText;
     stage = 2;
 };
-//add eventlistener for the buttons in html
+//Add eventlistener for the buttons in html
 buttonsOperators.forEach(button => {
     button.addEventListener("click", handleButtonsOperators);
 });
 
-//function for equal sign
+//Function for equal sign
 const handleEqual = () => {
     if (operator === "+") {
         const answer = valueFirst + valueSecond;
         display.value = `${answer}`;
-        stage = 0;
-        numberFirst = [];
-        numberSecond = [];
+        valueFirst = answer;
     } else if (operator === "-") {
         const answer = valueFirst - valueSecond;
         display.value = `${answer}`;
-        stage = 0;
-        numberFirst = [];
-        numberSecond = [];
+        valueFirst = answer;
     } else if (operator === "x") {
         const answer = valueFirst * valueSecond;
         display.value = `${answer}`;
-        stage = 0;
-        numberFirst = [];
-        numberSecond = [];
+        valueFirst = answer;
     } else if (operator === "÷") {
         const answer = valueFirst / valueSecond;
         display.value = `${answer}`;
-        stage = 0;
-        numberFirst = [];
-        numberSecond = [];
-    }
+        valueFirst = answer;
+    };
+    stage = 0;
+    numberFirst = [];
+    numberSecond = [];
 };
-//add eventlistener for the eqaul button in html
+//Add eventlistener for the eqaul button in html
 equalSign.addEventListener("click", handleEqual);
 
-//function for cancel sign
+//Function for cancel sign
 const handleCancel = () => {
     display.value = "";
     stage = 0;
     numberFirst = [];
     numberSecond = [];
 };
-//add eventlistener for the cancel button in html
+//Add eventlistener for the cancel button in html
 cancel.addEventListener("click", handleCancel);
 
-//function for +/- sign
+//Function for +/- sign
 const handlePosNeg = () => {
     if (stage == 0 || stage == 1) {
         valueFirst = valueFirst * -1;
@@ -99,5 +95,19 @@ const handlePosNeg = () => {
         display.value = `${valueSecond}`;
     };
 };
-//add eventlistener for the +/- button in html
+//Add eventlistener for the +/- button in html
 posNeg.addEventListener("click", handlePosNeg);
+
+//Function for . 
+const handleDot = (event: Event) => {
+    if (stage == 0 || stage == 1) {
+        numberFirst.push(".");
+        display.value = `${numberFirst.join("")}`;
+    } else {
+        numberSecond.push(".")
+        display.value = `${numberSecond.join("")}`;
+    };
+};
+
+//Add eventlistener for the . button in html
+decimal.addEventListener("click", handleDot);
