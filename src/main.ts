@@ -6,10 +6,14 @@ const cancel = document.querySelector<HTMLButtonElement>(".button__function--can
 const posNeg = document.querySelector<HTMLButtonElement>(".button__function--posNeg");
 const decimal = document.querySelector<HTMLButtonElement>(".button__function--dot");
 const percentage = document.querySelector<HTMLButtonElement>(".button__function--percentage");
+const sin = document.querySelector<HTMLButtonElement>(".button__functionExtended--sin");
+const cos = document.querySelector<HTMLButtonElement>(".button__functionExtended--cos");
+const tan = document.querySelector<HTMLButtonElement>(".button__functionExtended--tan");
+const log = document.querySelector<HTMLButtonElement>(".button__functionExtended--log");
 const buttonsNumber = document.querySelectorAll<HTMLElement>(".button__number");
 const buttonsOperators = document.querySelectorAll<HTMLElement>(".button__operator");
 
-if(!display || !equal || !cancel || !posNeg || !decimal || !percentage) {
+if(!display || !equal || !cancel || !posNeg || !decimal || !percentage || !sin || !cos || !tan || !log) {
     throw new Error("Issues with Selector");
 };
 
@@ -85,7 +89,15 @@ const handleEqual = () => {
             display.value =`${answer}`
         }
         valueFirst = answer;
-    }
+    } else if (operator === "^") {
+        const answer = Math.pow(valueFirst, valueSecond);
+        if (Number.isInteger(answer) === false) {
+        display.value = `${answer.toFixed(3)}`;
+        } else {
+            display.value =`${answer}`
+        }
+        valueFirst = answer;
+    };
     stage = 0;
     numberFirst = [];
     numberSecond = [];
@@ -144,4 +156,42 @@ const handlePercentage = () => {
 };
 
 //Add eventlistener for the percentage button in html
-percentage.addEventListener("click", handlePercentage)
+percentage.addEventListener("click", handlePercentage);
+
+//Extended - function for sin
+const handleSin = () => {
+    valueFirst = Math.sin(valueFirst* Math.PI /180);
+    display.value = `${valueFirst.toFixed(6)}`;
+    stage = 0;
+    numberFirst = [];
+};
+//Add eventlistener for the sin button in html
+sin.addEventListener("click", handleSin);
+//Extended - function for cos
+const handleCos = () => {
+    valueFirst = Math.cos(valueFirst* Math.PI /180);
+    display.value = `${valueFirst.toFixed(6)}`;
+    stage = 0;
+    numberFirst = [];
+};
+
+//Add eventlistener for the cos button in html
+cos.addEventListener("click", handleCos);
+//Extended - function for tan
+const handleTan = () => {
+    valueFirst = Math.tan(valueFirst* Math.PI /180);
+    display.value = `${valueFirst.toFixed(6)}`;
+    stage = 0;
+    numberFirst = [];
+};
+//Add eventlistener for the tan button in html
+tan.addEventListener("click", handleTan);
+//Extended - function for log
+const handleLog = () => {
+    valueFirst = Math.log(valueFirst);
+    display.value = `${valueFirst}`;
+    stage = 0;
+    numberFirst = [];
+};
+//Add eventlistener for the log button in html
+log.addEventListener("click", handleLog);
