@@ -85,6 +85,14 @@ const handleEqual = () => {
             display.value =`${answer}`
         }
         valueFirst = answer;
+    } else if (operator === "^") {
+        const answer = Math.pow(valueFirst, valueSecond);
+        if (Number.isInteger(answer) === false) {
+        display.value = `${answer.toFixed(3)}`;
+        } else {
+            display.value =`${answer}`
+        }
+        valueFirst = answer;
     }
     stage = 0;
     numberFirst = [];
@@ -144,4 +152,20 @@ const handlePercentage = () => {
 };
 
 //Add eventlistener for the percentage button in html
-percentage.addEventListener("click", handlePercentage)
+percentage.addEventListener("click", handlePercentage);
+
+//Extended - function for power
+
+//Add eventlistener for the power button in html
+
+//Extended - function for sin
+//Add eventlistener for the sin button in html
+
+//Extended - function for cos
+//Add eventlistener for the cos button in html
+
+//Extended - function for tan
+//Add eventlistener for the tan button in html
+
+//Extended - function for log
+//Add eventlistener for the log button in html

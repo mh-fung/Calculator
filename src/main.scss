@@ -40,3 +40,13 @@
         }
     }
 }
+
+.button__functionExtended {
+    display: none;
+}
+
+@media screen and (min-width: $desktop-breakpoint) {
+    .button__functionExtended {
+        display: unset;
+    }
+}
