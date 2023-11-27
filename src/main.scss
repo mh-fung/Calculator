@@ -9,7 +9,7 @@
 .display {
     width: 95vw;
     height: 10vh;
-    background-color: black;
+    background-color: $color-primary;
     margin: 10px;
     color: white;
     font-size: 55px;
@@ -21,7 +21,7 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
     gap: 5px;
-    background-color: black;
+    background-color: $color-primary;
     padding: 10px;
 }
 
@@ -30,15 +30,36 @@
     height: auto;
     font-size: 30px;
     border-radius: 50px;
+    border: 2px solid $color-primary;
     padding: 10px;
 
     &__number {
+        background-color: $color-secondary;
+        color: $color-white;
         &--0 {
             grid-column-start: 1;
             grid-column-end: 3;
             width: 45vw;
         }
     }
+    &__operator {
+        background-color: $color-tertiary;
+        color: $color-white;
+    }
+
+    &__operator--equal {
+        background-color: $color-tertiary;
+        color: $color-white;
+    }
+    &__function--dot {
+        background-color: $color-secondary;
+        color: $color-white;
+    }
+}
+
+.button:active {
+    position: relative;
+    top: 1px;
 }
 
 .button__functionExtended {
