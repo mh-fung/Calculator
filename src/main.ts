@@ -60,7 +60,7 @@ const handleEqual = () => {
     if (operator === "+") {
         const answer = valueFirst + valueSecond;
         if (Number.isInteger(answer) === false) {
-            display.value = `${answer.toFixed(3)}`;
+            display.value = `${parseFloat(answer.toFixed(3))}`;
             } else {
                 display.value =`${answer}`
             }
@@ -68,7 +68,7 @@ const handleEqual = () => {
     } else if (operator === "-") {
         const answer = valueFirst - valueSecond;
         if (Number.isInteger(answer) === false) {
-            display.value = `${answer.toFixed(3)}`;
+            display.value = `${parseFloat(answer.toFixed(3))}`;
             } else {
                 display.value =`${answer}`
             }
@@ -76,7 +76,7 @@ const handleEqual = () => {
     } else if (operator === "x") {
         const answer = valueFirst * valueSecond;
         if (Number.isInteger(answer) === false) {
-            display.value = `${answer.toFixed(3)}`;
+            display.value = `${parseFloat(answer.toFixed(3))}`;
             } else {
                 display.value =`${answer}`
             }
@@ -84,7 +84,7 @@ const handleEqual = () => {
     } else if (operator === "÷") {
         const answer = valueFirst / valueSecond;
         if (Number.isInteger(answer) === false) {
-        display.value = `${answer.toFixed(3)}`;
+        display.value = `${parseFloat(answer.toFixed(3))}`;
         } else {
             display.value =`${answer}`
         }
@@ -92,7 +92,7 @@ const handleEqual = () => {
     } else if (operator === "^") {
         const answer = Math.pow(valueFirst, valueSecond);
         if (Number.isInteger(answer) === false) {
-        display.value = `${answer.toFixed(3)}`;
+        display.value = `${parseFloat(answer.toFixed(3))}`;
         } else {
             display.value =`${answer}`
         }
@@ -161,7 +161,7 @@ percentage.addEventListener("click", handlePercentage);
 //Extended - function for sin
 const handleSin = () => {
     valueFirst = Math.sin(valueFirst* Math.PI /180);
-    display.value = `${valueFirst.toFixed(6)}`;
+    display.value = `${parseFloat(valueFirst.toFixed(6))}`;
     stage = 0;
     numberFirst = [];
 };
@@ -170,7 +170,7 @@ sin.addEventListener("click", handleSin);
 //Extended - function for cos
 const handleCos = () => {
     valueFirst = Math.cos(valueFirst* Math.PI /180);
-    display.value = `${valueFirst.toFixed(6)}`;
+    display.value = `${parseFloat(valueFirst.toFixed(6))}`;
     stage = 0;
     numberFirst = [];
 };
@@ -180,7 +180,7 @@ cos.addEventListener("click", handleCos);
 //Extended - function for tan
 const handleTan = () => {
     valueFirst = Math.tan(valueFirst* Math.PI /180);
-    display.value = `${valueFirst.toFixed(6)}`;
+    display.value = `${parseFloat(valueFirst.toFixed(6))}`;
     stage = 0;
     numberFirst = [];
 };
@@ -189,7 +189,7 @@ tan.addEventListener("click", handleTan);
 //Extended - function for log
 const handleLog = () => {
     valueFirst = Math.log(valueFirst);
-    display.value = `${valueFirst}`;
+    display.value = `${parseFloat(valueFirst.toFixed(6))}`;
     stage = 0;
     numberFirst = [];
 };
