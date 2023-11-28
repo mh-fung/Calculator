@@ -10,7 +10,7 @@ const sin = document.querySelector<HTMLButtonElement>(".button__functionExtended
 const cos = document.querySelector<HTMLButtonElement>(".button__functionExtended--cos");
 const tan = document.querySelector<HTMLButtonElement>(".button__functionExtended--tan");
 const log = document.querySelector<HTMLButtonElement>(".button__functionExtended--log");
-const footer = document.querySelector<HTMLElement>(".footer")
+const footer = document.querySelector<HTMLDivElement>(".footer")
 
 const buttonsNumber = document.querySelectorAll<HTMLElement>(".button__number");
 const buttonsOperators = document.querySelectorAll<HTMLElement>(".button__operator");
@@ -81,11 +81,18 @@ const handleEqual = () => {
         display.value =`${parseFloat(answer.toFixed(3))}`
         valueFirst = answer;
     };
-    //Easter Egg of infinity
+    //Easter Egg 1
     if (display.value == "Infinity") {
         display.value = "♾️ 無限 ♾️";
+    
+    //Easter Egg 2
+    } else if (display.value == "13424") {
+        footer.innerHTML = `<a href="https://www.youtube.com/watch?v=b2suq0_4knk" class="easterEgg">Easter egg!! Here is a Cantonese song for you!</a>`;
+    
+    //Easter Egg 3
+    } else if (display.value == "1314") {
+        footer.innerHTML = `<a href="https://www.youtube.com/watch?v=Ol-b36_mCJk" class="easterEgg">Easter egg!! Here is a Cantonese song for you!</a>`;
     }
-
     stage = 0;
     numberFirst = [];
     numberSecond = [];
