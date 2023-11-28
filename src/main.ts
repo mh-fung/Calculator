@@ -31,6 +31,7 @@ const handleButtonsNumber = (event: Event) => {
     const buttonValue = target.innerText;
     if (stage == 0 || stage == 1) {
         numberFirst.push(Number(buttonValue));
+        stage = 1;
         display.value = `${numberFirst.join("")}`;
         valueFirst = Number(display.value);
     } else {
@@ -59,43 +60,23 @@ buttonsOperators.forEach(button => {
 const handleEqual = () => {
     if (operator === "+") {
         const answer = valueFirst + valueSecond;
-        if (Number.isInteger(answer) === false) {
-            display.value = `${parseFloat(answer.toFixed(3))}`;
-            } else {
-                display.value =`${answer}`
-            }
+        display.value =`${parseFloat(answer.toFixed(3))}`
         valueFirst = answer;
     } else if (operator === "-") {
         const answer = valueFirst - valueSecond;
-        if (Number.isInteger(answer) === false) {
-            display.value = `${parseFloat(answer.toFixed(3))}`;
-            } else {
-                display.value =`${answer}`
-            }
+        display.value =`${parseFloat(answer.toFixed(3))}`
         valueFirst = answer;
     } else if (operator === "x") {
         const answer = valueFirst * valueSecond;
-        if (Number.isInteger(answer) === false) {
-            display.value = `${parseFloat(answer.toFixed(3))}`;
-            } else {
-                display.value =`${answer}`
-            }
+        display.value =`${parseFloat(answer.toFixed(3))}`
         valueFirst = answer;
     } else if (operator === "÷") {
         const answer = valueFirst / valueSecond;
-        if (Number.isInteger(answer) === false) {
-        display.value = `${parseFloat(answer.toFixed(3))}`;
-        } else {
-            display.value =`${answer}`
-        }
+        display.value =`${parseFloat(answer.toFixed(3))}`
         valueFirst = answer;
     } else if (operator === "^") {
         const answer = Math.pow(valueFirst, valueSecond);
-        if (Number.isInteger(answer) === false) {
-        display.value = `${parseFloat(answer.toFixed(3))}`;
-        } else {
-            display.value =`${answer}`
-        }
+        display.value =`${parseFloat(answer.toFixed(3))}`
         valueFirst = answer;
     };
     stage = 0;
@@ -179,10 +160,16 @@ const handleCos = () => {
 cos.addEventListener("click", handleCos);
 //Extended - function for tan
 const handleTan = () => {
+    if (valueFirst === 90) {
+        display.value = "This should not exist!"
+        stage = 0;
+        numberFirst = [];
+    } else {
     valueFirst = Math.tan(valueFirst* Math.PI /180);
     display.value = `${parseFloat(valueFirst.toFixed(6))}`;
     stage = 0;
     numberFirst = [];
+    }
 };
 //Add eventlistener for the tan button in html
 tan.addEventListener("click", handleTan);
