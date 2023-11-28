@@ -87,11 +87,11 @@ const handleEqual = () => {
     
     //Easter Egg 2
     } else if (display.value == "13424") {
-        footer.innerHTML = `<a href="https://www.youtube.com/watch?v=b2suq0_4knk" class="easterEgg">Easter egg!! Here is a Cantonese song for you!</a>`;
+        footer.innerHTML = `<a href="https://www.youtube.com/watch?v=b2suq0_4knk" class="easterEgg">Easter egg!! Here is a Cantonese song for you!</a> <p class="easterEgg">This is a Cantonese song that uses numbers as the lyrics. Hope you enjoy :)</p>`;
     
     //Easter Egg 3
     } else if (display.value == "1314") {
-        footer.innerHTML = `<a href="https://www.youtube.com/watch?v=Ol-b36_mCJk" class="easterEgg">Easter egg!! Here is a Cantonese song for you!</a>`;
+        footer.innerHTML = `<a href="https://www.youtube.com/watch?v=Ol-b36_mCJk" class="easterEgg">Easter egg!! Here is a Cantonese song for you!</a> <p class="easterEgg"> The sound of 1314 in Cantonese means foerever, which is commonly used to express with love and this is a famous romantic love song in CantoPop. Hope you enjoy :)</p>`;
     }
     stage = 0;
     numberFirst = [];
