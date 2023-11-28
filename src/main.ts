@@ -114,11 +114,19 @@ posNeg.addEventListener("click", handlePosNeg);
 //Function for . 
 const handleDot = () => {
     if (stage == 0 || stage == 1) {
+        if (numberFirst.includes(".")) {
+            display.value = display.value;
+        } else {
         numberFirst.push(".");
         display.value = `${numberFirst.join("")}`;
+        }
     } else {
+        if (numberSecond.includes(".")){
+            display.value = display.value;
+        } else {
         numberSecond.push(".")
         display.value = `${numberSecond.join("")}`;
+        }
     };
 };
 
