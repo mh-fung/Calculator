@@ -10,10 +10,12 @@ const sin = document.querySelector<HTMLButtonElement>(".button__functionExtended
 const cos = document.querySelector<HTMLButtonElement>(".button__functionExtended--cos");
 const tan = document.querySelector<HTMLButtonElement>(".button__functionExtended--tan");
 const log = document.querySelector<HTMLButtonElement>(".button__functionExtended--log");
+const footer = document.querySelector<HTMLElement>(".footer")
+
 const buttonsNumber = document.querySelectorAll<HTMLElement>(".button__number");
 const buttonsOperators = document.querySelectorAll<HTMLElement>(".button__operator");
 
-if(!display || !equal || !cancel || !posNeg || !decimal || !percentage || !sin || !cos || !tan || !log) {
+if(!display || !equal || !cancel || !posNeg || !decimal || !percentage || !sin || !cos || !tan || !log || !footer) {
     throw new Error("Issues with Selector");
 };
 
@@ -79,6 +81,11 @@ const handleEqual = () => {
         display.value =`${parseFloat(answer.toFixed(3))}`
         valueFirst = answer;
     };
+    //Easter Egg of infinity
+    if (display.value == "Infinity") {
+        display.value = "♾️ 無限 ♾️";
+    }
+
     stage = 0;
     numberFirst = [];
     numberSecond = [];
