@@ -10,10 +10,12 @@ const sin = document.querySelector<HTMLButtonElement>(".button__functionExtended
 const cos = document.querySelector<HTMLButtonElement>(".button__functionExtended--cos");
 const tan = document.querySelector<HTMLButtonElement>(".button__functionExtended--tan");
 const log = document.querySelector<HTMLButtonElement>(".button__functionExtended--log");
+const footer = document.querySelector<HTMLDivElement>(".footer")
+
 const buttonsNumber = document.querySelectorAll<HTMLElement>(".button__number");
 const buttonsOperators = document.querySelectorAll<HTMLElement>(".button__operator");
 
-if(!display || !equal || !cancel || !posNeg || !decimal || !percentage || !sin || !cos || !tan || !log) {
+if(!display || !equal || !cancel || !posNeg || !decimal || !percentage || !sin || !cos || !tan || !log || !footer) {
     throw new Error("Issues with Selector");
 };
 
@@ -31,6 +33,7 @@ const handleButtonsNumber = (event: Event) => {
     const buttonValue = target.innerText;
     if (stage == 0 || stage == 1) {
         numberFirst.push(Number(buttonValue));
+        stage = 1;
         display.value = `${numberFirst.join("")}`;
         valueFirst = Number(display.value);
     } else {
@@ -59,45 +62,37 @@ buttonsOperators.forEach(button => {
 const handleEqual = () => {
     if (operator === "+") {
         const answer = valueFirst + valueSecond;
-        if (Number.isInteger(answer) === false) {
-            display.value = `${parseFloat(answer.toFixed(3))}`;
-            } else {
-                display.value =`${answer}`
-            }
+        display.value =`${parseFloat(answer.toFixed(3))}`
         valueFirst = answer;
     } else if (operator === "-") {
         const answer = valueFirst - valueSecond;
-        if (Number.isInteger(answer) === false) {
-            display.value = `${parseFloat(answer.toFixed(3))}`;
-            } else {
-                display.value =`${answer}`
-            }
+        display.value =`${parseFloat(answer.toFixed(3))}`
         valueFirst = answer;
     } else if (operator === "x") {
         const answer = valueFirst * valueSecond;
-        if (Number.isInteger(answer) === false) {
-            display.value = `${parseFloat(answer.toFixed(3))}`;
-            } else {
-                display.value =`${answer}`
-            }
+        display.value =`${parseFloat(answer.toFixed(3))}`
         valueFirst = answer;
     } else if (operator === "÷") {
         const answer = valueFirst / valueSecond;
-        if (Number.isInteger(answer) === false) {
-        display.value = `${parseFloat(answer.toFixed(3))}`;
-        } else {
-            display.value =`${answer}`
-        }
+        display.value =`${parseFloat(answer.toFixed(3))}`
         valueFirst = answer;
     } else if (operator === "^") {
         const answer = Math.pow(valueFirst, valueSecond);
-        if (Number.isInteger(answer) === false) {
-        display.value = `${parseFloat(answer.toFixed(3))}`;
-        } else {
-            display.value =`${answer}`
-        }
+        display.value =`${parseFloat(answer.toFixed(3))}`
         valueFirst = answer;
     };
+    //Easter Egg 1
+    if (display.value == "Infinity") {
+        display.value = "♾️ 無限 ♾️";
+    
+    //Easter Egg 2
+    } else if (display.value == "13424") {
+        footer.innerHTML = `<a href="https://www.youtube.com/watch?v=b2suq0_4knk" class="easterEgg">Easter egg!! Here is a Cantonese song for you!</a> <p class="easterEgg">This is a Cantonese song that uses numbers as the lyrics. Hope you enjoy :)</p>`;
+    
+    //Easter Egg 3
+    } else if (display.value == "1314") {
+        footer.innerHTML = `<a href="https://www.youtube.com/watch?v=Ol-b36_mCJk" class="easterEgg">Easter egg!! Here is a Cantonese song for you!</a> <p class="easterEgg"> The sound of 1314 in Cantonese means foerever, which is commonly used to express with love and this is a famous romantic love song in CantoPop. Hope you enjoy :)</p>`;
+    }
     stage = 0;
     numberFirst = [];
     numberSecond = [];
@@ -133,11 +128,19 @@ posNeg.addEventListener("click", handlePosNeg);
 //Function for . 
 const handleDot = () => {
     if (stage == 0 || stage == 1) {
+        if (numberFirst.includes(".")) {
+            display.value = display.value;
+        } else {
         numberFirst.push(".");
         display.value = `${numberFirst.join("")}`;
+        }
     } else {
+        if (numberSecond.includes(".")){
+            display.value = display.value;
+        } else {
         numberSecond.push(".")
         display.value = `${numberSecond.join("")}`;
+        }
     };
 };
 
@@ -179,10 +182,16 @@ const handleCos = () => {
 cos.addEventListener("click", handleCos);
 //Extended - function for tan
 const handleTan = () => {
+    if (valueFirst === 90) {
+        display.value = "This should not exist!"
+        stage = 0;
+        numberFirst = [];
+    } else {
     valueFirst = Math.tan(valueFirst* Math.PI /180);
     display.value = `${parseFloat(valueFirst.toFixed(6))}`;
     stage = 0;
     numberFirst = [];
+    }
 };
 //Add eventlistener for the tan button in html
 tan.addEventListener("click", handleTan);
