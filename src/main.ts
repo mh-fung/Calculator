@@ -1,4 +1,4 @@
-import './main.scss'
+import './styles/main.scss'
 //Get access to the html elements
 const display = document.querySelector<HTMLInputElement>(".display")
 const equal = document.querySelector<HTMLButtonElement>(".button__operator--equal");
