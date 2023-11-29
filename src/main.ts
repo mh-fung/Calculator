@@ -11,7 +11,7 @@ const cos = document.querySelector<HTMLButtonElement>(".button__functionExtended
 const tan = document.querySelector<HTMLButtonElement>(".button__functionExtended--tan");
 const log = document.querySelector<HTMLButtonElement>(".button__functionExtended--log");
 const footer = document.querySelector<HTMLDivElement>(".footer")
-
+//Get access to html elements with querySelectorAll
 const buttonsNumber = document.querySelectorAll<HTMLElement>(".button__number");
 const buttonsOperators = document.querySelectorAll<HTMLElement>(".button__operator");
 
@@ -26,7 +26,7 @@ let stage:number = 0;
 let operator: string;
 let numberFirst: any[] = [];
 let numberSecond: any[] = [];
-
+let haveSecondValue:boolean = false;
 //Function for numbers
 const handleButtonsNumber = (event: Event) => {
     const target = event.currentTarget as HTMLButtonElement;
@@ -38,10 +38,10 @@ const handleButtonsNumber = (event: Event) => {
         valueFirst = Number(display.value);
     } else {
         numberSecond.push(Number(buttonValue));
-        numberFirst.push(Number(buttonValue));
         display.value = `${numberSecond.join("")}`;
         valueSecond = Number(display.value);
-    };
+        haveSecondValue = true;
+    }
 };
 //Add eventlistener for the buttons in html
 buttonsNumber.forEach(button => {
@@ -49,20 +49,24 @@ buttonsNumber.forEach(button => {
   });
 //Function for operators
 const handleButtonsOperators = (event: Event) => {
+    if (haveSecondValue == true) {
+        handleEqual();
+    } else if (haveSecondValue == false) {
     const target = event.currentTarget as HTMLButtonElement;
     operator = target.innerText;
     stage = 2;
+    }
 };
 //Add eventlistener for the buttons in html
 buttonsOperators.forEach(button => {
     button.addEventListener("click", handleButtonsOperators);
 });
 
-//Function for equal sign
+//Function for equal sign i.e. perform the calculation
 const handleEqual = () => {
     if (operator === "+") {
         const answer = valueFirst + valueSecond;
-        display.value =`${parseFloat(answer.toFixed(3))}`
+        display.value =`${parseFloat(answer.toFixed(3))}` //parseFloat, toFixed are used to handle answer with decimal places
         valueFirst = answer;
     } else if (operator === "-") {
         const answer = valueFirst - valueSecond;
@@ -83,31 +87,31 @@ const handleEqual = () => {
     };
     //Easter Egg 1
     if (display.value == "Infinity") {
-        display.value = "♾️ 無限 ♾️";
+        display.value = "♾️ 無限 ♾️ ";
     
     //Easter Egg 2
-    } else if (display.value == "13424") {
-        footer.innerHTML = `<a href="https://www.youtube.com/watch?v=b2suq0_4knk" class="easterEgg">Easter egg!! Here is a Cantonese song for you!</a> <p class="easterEgg">This is a Cantonese song that uses numbers as the lyrics. Hope you enjoy :)</p>`;
-    
-    //Easter Egg 3
     } else if (display.value == "1314") {
-        footer.innerHTML = `<a href="https://www.youtube.com/watch?v=Ol-b36_mCJk" class="easterEgg">Easter egg!! Here is a Cantonese song for you!</a> <p class="easterEgg"> The sound of 1314 in Cantonese means foerever, which is commonly used to express with love and this is a famous romantic love song in CantoPop. Hope you enjoy :)</p>`;
+        footer.innerHTML = `<iframe width="250" height="auto" src="https://www.youtube.com/embed/O526KtL5i3U?si=yLuBYoRgofCFGmMZ&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> <p class="easterEgg"> 1314 sounds like forever in Cantonese, which is commonly used to express with love. Hope you enjoy :)</p>`;
     }
-    stage = 0;
+    //Reset the calculator
     numberFirst = [];
     numberSecond = [];
+    haveSecondValue = false;
 };
 //Add eventlistener for the eqaul button in html
 equal.addEventListener("click", handleEqual);
 
 //Function for cancel sign
 const handleCancel = () => {
+    //Reset the calculator
     display.value = "";
     stage = 0;
     numberFirst = [];
     valueFirst = 0;
     numberSecond = [];
     valueSecond = 0;
+    operator = "";
+    haveSecondValue = false;
 };
 //Add eventlistener for the cancel button in html
 cancel.addEventListener("click", handleCancel);

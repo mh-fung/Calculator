@@ -12,7 +12,7 @@
     height: 10vh;
     background-color: $color-primary;
     margin: 10px;
-    color: white;
+    color: $color-white;
     font-size: 55px;
     text-align: end;
 }
@@ -31,7 +31,7 @@
     width: 20vw;
     height: auto;
     font-size: 30px;
-    border-radius: 50px;
+    border-radius: 5px;
     border: 2px solid $color-primary;
     padding: 10px;
 
