@@ -1,4 +1,6 @@
-import './styles/main.scss'
+import './styles/main.scss';
+import confetti from "canvas-confetti";
+
 //Get access to the html elements
 const display = document.querySelector<HTMLInputElement>(".display")
 const equal = document.querySelector<HTMLButtonElement>(".button__operator--equal");
@@ -89,9 +91,10 @@ const handleEqual = () => {
     if (display.value == "Infinity") {
         display.value = "♾️ 無限 ♾️ ";
 
-        //Easter Egg 2
+    //Easter Egg 2
     } else if (display.value == "1314") {
-        footer.innerHTML = `<iframe width="250" height="auto" src="https://www.youtube.com/embed/O526KtL5i3U?si=yLuBYoRgofCFGmMZ&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> <p class="easterEgg"> 1314 sounds like forever in Cantonese, which is commonly used to express with love. Hope you enjoy :)</p>`;
+        fireConfetti();
+        footer.innerHTML = `<p class="easterEgg"> 1314 sounds like forever in Cantonese, which is commonly used to express with love. Hope you enjoy :)</p> <iframe width="250" height="auto" src="https://www.youtube.com/embed/O526KtL5i3U?si=yLuBYoRgofCFGmMZ&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
     }
     //Reset the calculator
     numberFirst = [];
@@ -198,3 +201,15 @@ const handleTrigFunction = (event: Event) => {
 buttonsFunctionExtended.forEach(button => {
     button.addEventListener("click", handleTrigFunction);
 })
+//Function for confetti
+const scalar = 2;
+const heart = confetti.shapeFromText({text: "❤️", scalar});
+
+
+const fireConfetti = () => {
+    confetti({
+        shapes: [heart],
+        particleCount: 99,
+        scalar
+      });
+}

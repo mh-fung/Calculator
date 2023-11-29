@@ -10,7 +10,12 @@
     font-family: $font-body;
 }
 
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .easterEgg {
-    margin: 10px;
+    margin: 12px;
     color: $color-primary;
 }
