@@ -9,13 +9,12 @@ const percentage = document.querySelector<HTMLButtonElement>(".button__function-
 const sin = document.querySelector<HTMLButtonElement>(".button__functionExtended--sin");
 const cos = document.querySelector<HTMLButtonElement>(".button__functionExtended--cos");
 const tan = document.querySelector<HTMLButtonElement>(".button__functionExtended--tan");
-const log = document.querySelector<HTMLButtonElement>(".button__functionExtended--log");
 const footer = document.querySelector<HTMLDivElement>(".footer")
 //Get access to html elements with querySelectorAll
 const buttonsNumber = document.querySelectorAll<HTMLElement>(".button__number");
 const buttonsOperators = document.querySelectorAll<HTMLElement>(".button__operator");
 
-if(!display || !equal || !cancel || !posNeg || !decimal || !percentage || !sin || !cos || !tan || !log || !footer) {
+if(!display || !equal || !cancel || !posNeg || !decimal || !percentage || !sin || !cos || !tan || !footer) {
     throw new Error("Issues with Selector");
 };
 
@@ -51,6 +50,9 @@ buttonsNumber.forEach(button => {
 const handleButtonsOperators = (event: Event) => {
     if (haveSecondValue == true) {
         handleEqual();
+        const target = event.currentTarget as HTMLButtonElement;
+        operator = target.innerText;
+        stage = 2;
     } else if (haveSecondValue == false) {
     const target = event.currentTarget as HTMLButtonElement;
     operator = target.innerText;
@@ -199,12 +201,3 @@ const handleTan = () => {
 };
 //Add eventlistener for the tan button in html
 tan.addEventListener("click", handleTan);
-//Extended - function for log
-const handleLog = () => {
-    valueFirst = Math.log(valueFirst);
-    display.value = `${parseFloat(valueFirst.toFixed(6))}`;
-    stage = 0;
-    numberFirst = [];
-};
-//Add eventlistener for the log button in html
-log.addEventListener("click", handleLog);
