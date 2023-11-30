@@ -12,7 +12,7 @@ const footer = document.querySelector<HTMLDivElement>(".footer")
 //Get access to html elements with querySelectorAll
 const buttonsNumber = document.querySelectorAll<HTMLElement>(".button__number");
 const buttonsOperators = document.querySelectorAll<HTMLElement>(".button__operator");
-const buttonsFunctionExtended = document.querySelectorAll<HTMLElement>(".button__functionExtended")
+const buttonsTrig = document.querySelectorAll<HTMLElement>(".button__trig")
 
 if (!display || !equal || !cancel || !posNeg || !decimal || !percentage || !footer) {
     throw new Error("Issues with Selector");
@@ -198,13 +198,12 @@ const handleTrigFunction = (event: Event) => {
     }
 }
 
-buttonsFunctionExtended.forEach(button => {
+buttonsTrig.forEach(button => {
     button.addEventListener("click", handleTrigFunction);
 })
 //Function for confetti
 const scalar = 2;
 const heart = confetti.shapeFromText({text: "❤️", scalar});
-
 
 const fireConfetti = () => {
     confetti({

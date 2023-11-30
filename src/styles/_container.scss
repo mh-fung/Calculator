@@ -1,6 +1,6 @@
 @use "./variables" as *;
 
-.buttons {
+.container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -32,6 +32,10 @@
     &__operator {
         background-color: $color-tertiary;
         color: $color-white;
+
+        &--power {
+            display: none;
+        }
     }
 
     &__operator--equal {
@@ -50,17 +54,25 @@
     top: 2px;
 }
 
-.button__functionExtended {
+.button__trig {
     display: none;
 }
 
 @media screen and (min-width: $desktop-breakpoint) {
-    .button__functionExtended {
+    .button__trig {
         display: unset;
     }
 
-    .buttons {
+    .container {
         padding: 40px 0px 40px 20px;
         gap: 20px;
+    }
+    
+    .button {
+        &__operator{
+            &--power{
+                display: unset;
+            }
+        }
     }
 }
